@@ -1,5 +1,6 @@
 #ifndef GENERATEUR_DE_PHRASE_STRUCT_H
 #define GENERATEUR_DE_PHRASE_STRUCT_H
+
 typedef struct listChainAgreeForm{
     char category[3];
     char word[25];

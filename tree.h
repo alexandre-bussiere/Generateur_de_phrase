@@ -3,6 +3,7 @@
 
 #include "struct.h"
 #include <stdbool.h>
+#include <stdio.h>
 
 Tree initTree(); //-> return un tree initialiser
 

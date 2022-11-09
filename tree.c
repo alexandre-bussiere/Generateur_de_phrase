@@ -2,7 +2,14 @@
 
 //return un tree initialiser
 Tree initTree() {
+    Tree tree;
 
+    tree.adj=NULL;
+    tree.adv=NULL;
+    tree.ver=NULL;
+    tree.nom=NULL;
+
+    return tree;
 }
 
 
