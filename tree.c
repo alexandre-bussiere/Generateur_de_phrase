@@ -1,14 +1,16 @@
 #include "tree.h"
 
+//GOOD
 char *extractTypeFromChar(char *line) {
     char *type = malloc(3 * sizeof(char));
     char *information = extractInformationFromLine(line);
     for (int i = 0; i < 3; i++) {
-        type[i] = line[i];
+        type[i] = information[i];
     }
     return type;
 }
 
+//GOOD
 Node *createNode(char value) {
     Node *newNode = malloc(sizeof(Node));
 
@@ -20,6 +22,7 @@ Node *createNode(char value) {
     return newNode;
 }
 
+//GOOD
 //return un tree initialiser
 Tree initTree() {
     Tree tree;
@@ -33,16 +36,18 @@ Tree initTree() {
 }
 
 
-
+//normaly good
 // return true s'il a déjà un fils avec la lettre demander, false sinon
 bool isSonExisting(Node *currentNode, char letterToSearch) {
-    ListChainSon allSon = currentNode->list;
-    CelloflistChainSon *temporary = allSon.head;
-    while (temporary != allSon.tail) {
-        if ((temporary->value)->value == letterToSearch) {
-            return true;
+    if (currentNode != NULL) {
+        ListChainSon allSon = currentNode->list;
+        CelloflistChainSon *temporary = allSon.head;
+        while (temporary != allSon.tail) {
+            if ((temporary->value)->value == letterToSearch) {
+                return true;
+            }
+            temporary = temporary->next;
         }
-        temporary = temporary->next;
     }
     return false;
 }

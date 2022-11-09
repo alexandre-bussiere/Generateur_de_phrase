@@ -12,5 +12,5 @@ char* extractBaseFormeFromLine(char* line){
 }
 
 char* extractInformationFromLine(char* line){
-    return "Nom:Mas+SG";
+    return "Ver:IImp+PL+P3";
 }
