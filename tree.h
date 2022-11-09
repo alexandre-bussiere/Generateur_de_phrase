@@ -4,7 +4,9 @@
 #include "struct.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
+Node* createNode(char value);
 Tree initTree(); //-> return un tree initialiser
 
 bool isSonExisting(Node *currentNode, char letterToSearch); //-> return true s'il a déjà un fils avec la lettre demander, false sinon
