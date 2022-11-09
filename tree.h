@@ -1,10 +1,16 @@
 #ifndef GENERATEUR_DE_PHRASE_TREE_H
 #define GENERATEUR_DE_PHRASE_TREE_H
 
-#include "struct.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#include "struct.h"
+#include "take-from-txt.h"
+#include "functionOfListAgreeForm.h"
+
+char *extractTypeFromChar(char *line);
 
 Node* createNode(char value);
 Tree initTree(); //-> return un tree initialiser

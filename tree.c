@@ -1,7 +1,16 @@
 #include "tree.h"
 
+char *extractTypeFromChar(char *line) {
+    char *type = malloc(3 * sizeof(char));
+    char *information = extractInformationFromLine(line);
+    for (int i = 0; i < 3; i++) {
+        type[i] = line[i];
+    }
+    return type;
+}
+
 Node *createNode(char value) {
-    Node *newNode;
+    Node *newNode = malloc(sizeof(Node));
 
     newNode->value = value;
     (newNode->list).tail = NULL;
@@ -61,7 +70,29 @@ Node *giveNodeWithTheGivenLetter(Node *currentNode, char letterToSearch) {
 
 
 void placeWordInTree(Tree dictionaryInTree, int line) {
+    char *newWord = extractBaseFormeFromLine("stabilisaient\tstabiliser\tVer:IImp+PL+P3");
+    char *informationWord = extractTypeFromChar("stabilisaient\tstabiliser\tVer:IImp+PL+P3");
 
+    int lengthWord = strlen(newWord);
+    Node *currentNode, *nextNode = NULL;
+
+    if (strcmp(informationWord, "Adv") == 0) {
+        currentNode = dictionaryInTree.adv;
+    } else if (strcmp(informationWord, "Adj") == 0) {
+        currentNode = dictionaryInTree.adj;
+    } else if (strcmp(informationWord, "Ver") == 0) {
+        currentNode = dictionaryInTree.ver;
+    } else if (strcmp(informationWord, "Nom") == 0) {
+        currentNode = dictionaryInTree.nom;
+    }
+
+    for (int i = 0; i < lengthWord; i++) {
+        nextNode = giveNodeWithTheGivenLetter(currentNode, newWord[i]);
+    }
+    AllAgreeForm *agreeFormOfCurrentWord = nextNode->agreeForm;
+    agreeFormOfCurrentWord->nbAgreeForm++;
+    addAgreeForm("stabilisaient\tstabiliser\tVer:IImp+PL+P3", &(agreeFormOfCurrentWord->listAgreeForm));
+    return;
 }
 
 
