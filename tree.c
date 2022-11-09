@@ -51,7 +51,12 @@ void createSonWithGivenLetter(Node *currentNode, char valueOfNewSon) {
 
 //return le node avec la lettre demander
 Node *giveNodeWithTheGivenLetter(Node *currentNode, char letterToSearch) {
-
+    createSonWithGivenLetter(currentNode, letterToSearch);
+    CelloflistChainSon *temporary = (currentNode->list).head;
+    while (((temporary->value)->value != letterToSearch) && (temporary->next != NULL)) {
+        temporary = temporary->next;
+    }
+    return temporary->value;
 }
 
 
