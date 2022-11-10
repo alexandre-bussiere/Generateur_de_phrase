@@ -2,18 +2,23 @@
 #include "tree.h"
 #include "struct.h"
 
+#define x 'b'
+
 int main() {
     Tree dictionary=initTree();
-    //placeWordInTree(dictionary, 0);
-
+    placeWordInTree(dictionary, 0);
+/*
     createSonWithGivenLetter(dictionary.nom, 'a');
-    createSonWithGivenLetter(dictionary.nom->list.head->value, 'b');
+    createSonWithGivenLetter(dictionary.nom, 'E');
     createSonWithGivenLetter(dictionary.nom, 'c');
 
-    if(isSonExisting(dictionary.nom, 'b')){
-        printf("oui");
+    printf("%c\n", (giveNodeWithTheGivenLetter(dictionary.nom, x)->value));
+*/
+    if(isSonExisting(dictionary.nom, x)){
+        printf("oui\n");
     } else{
-        printf("non");
+        printf("non\n");
     }
+
     return 0;
 }

@@ -24,7 +24,7 @@ Tree initTree() {
 }
 
 
-//not good
+//GOOD
 // return true s'il a déjà un fils avec la lettre demander, false sinon
 bool isSonExisting(Node *currentNode, char letterToSearch) {
     if (currentNode != NULL) {
@@ -41,6 +41,7 @@ bool isSonExisting(Node *currentNode, char letterToSearch) {
 }
 
 
+//GOOD
 void createSonWithGivenLetter(Node *currentNode, char valueOfNewSon) {
     if (!isSonExisting(currentNode, valueOfNewSon)) {
         if (currentNode != NULL) {
@@ -58,6 +59,7 @@ void createSonWithGivenLetter(Node *currentNode, char valueOfNewSon) {
 }
 
 
+//GOOD
 //return le node avec la lettre demander
 Node *giveNodeWithTheGivenLetter(Node *currentNode, char letterToSearch) {
     createSonWithGivenLetter(currentNode, letterToSearch);
@@ -90,6 +92,9 @@ void placeWordInTree(Tree dictionaryInTree, int line) {
         nextNode = giveNodeWithTheGivenLetter(currentNode, newWord[i]);
     }
     AllAgreeForm *agreeFormOfCurrentWord = nextNode->agreeForm;
+
+    //      Modif -> si nouveaux mot ou pas
+    //agreeFormOfCurrentWord=(AllAgreeForm*) malloc(sizeof (AllAgreeForm));
     agreeFormOfCurrentWord->nbAgreeForm++;
     addAgreeForm("stabilisaient\tstabiliser\tVer:IImp+PL+P3", &(agreeFormOfCurrentWord->listAgreeForm));
     return;
