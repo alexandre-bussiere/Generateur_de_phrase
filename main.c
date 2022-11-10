@@ -7,8 +7,10 @@ int main() {
     //placeWordInTree(dictionary, 0);
 
     createSonWithGivenLetter(dictionary.nom, 'a');
+    createSonWithGivenLetter(dictionary.nom->list.head->value, 'b');
+    createSonWithGivenLetter(dictionary.nom, 'c');
 
-    if(isSonExisting(dictionary.nom, 'a')){
+    if(isSonExisting(dictionary.nom, 'b')){
         printf("oui");
     } else{
         printf("non");

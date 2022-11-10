@@ -11,38 +11,26 @@ char *extractTypeFromChar(char *line) {
 }
 
 //GOOD
-Node *createNode(char value) {
-    Node *newNode = malloc(sizeof(Node));
-
-    newNode->value = value;
-    (newNode->list).tail = NULL;
-    (newNode->list).head = NULL;
-    newNode->agreeForm = NULL;
-
-    return newNode;
-}
-
-//GOOD
 //return un tree initialiser
 Tree initTree() {
     Tree tree;
 
-    tree.adj = NULL;
-    tree.adv = NULL;
-    tree.ver = NULL;
-    tree.nom = NULL;
+    tree.adj = createNode('0');
+    tree.adv = createNode('0');
+    tree.ver = createNode('0');
+    tree.nom = createNode('0');
 
     return tree;
 }
 
 
-//normaly good
+//not good
 // return true s'il a déjà un fils avec la lettre demander, false sinon
 bool isSonExisting(Node *currentNode, char letterToSearch) {
     if (currentNode != NULL) {
         ListChainSon allSon = currentNode->list;
         CelloflistChainSon *temporary = allSon.head;
-        while (temporary != allSon.tail) {
+        while (temporary != NULL) {
             if ((temporary->value)->value == letterToSearch) {
                 return true;
             }
@@ -55,9 +43,16 @@ bool isSonExisting(Node *currentNode, char letterToSearch) {
 
 void createSonWithGivenLetter(Node *currentNode, char valueOfNewSon) {
     if (!isSonExisting(currentNode, valueOfNewSon)) {
-        CelloflistChainSon *newNode = malloc(sizeof(CelloflistChainSon));
-        newNode->next = NULL;
-        newNode->value = createNode(valueOfNewSon);
+        if (currentNode != NULL) {
+            addCellToListOfSon(&(currentNode->list), valueOfNewSon);
+        } else{
+            currentNode =(Node*) malloc(sizeof (Node));
+            currentNode->value=valueOfNewSon;
+            currentNode->list.head=NULL;
+            currentNode->list.tail=NULL;
+
+            currentNode->agreeForm=NULL;
+        }
     }
     return;
 }

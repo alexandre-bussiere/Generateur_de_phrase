@@ -9,6 +9,7 @@
 #include "struct.h"
 #include "take-from-txt.h"
 #include "functionOfListAgreeForm.h"
+#include "functionOfListOfSon.h"
 
 char *extractTypeFromChar(char *line);
 
