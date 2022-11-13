@@ -2,7 +2,7 @@
 #include "tree.h"
 #include "struct.h"
 
-#define x 'b'
+#define x 't'
 
 int main() {
     Tree dictionary=initTree();
@@ -14,7 +14,7 @@ int main() {
 
     printf("%c\n", (giveNodeWithTheGivenLetter(dictionary.nom, x)->value));
 */
-    if(isSonExisting(dictionary.nom, x)){
+    if(isSonExisting(dictionary.ver, x)){
         printf("oui\n");
     } else{
         printf("non\n");

@@ -7,7 +7,7 @@ char* extractAgreeFormeFromLine(char* line){
 
 
 char* extractBaseFormeFromLine(char* line){
-    return "stabiliser";
+    return "sta";
 
 }
 

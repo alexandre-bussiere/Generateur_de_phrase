@@ -4,7 +4,7 @@
 typedef struct cellOfChainAgreeForm {
     char category[3];
     char word[25];
-    char def[10];
+    char def[14];
     struct cellOfChainAgreeForm *next;
 } CellOfChainAgreeForm;
 

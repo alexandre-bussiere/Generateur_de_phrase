@@ -20,6 +20,10 @@ bool isSonExisting(Node *currentNode, char letterToSearch); //-> return true s'i
 void createSonWithGivenLetter(Node *currentNode, char valueOfNewSon); //-> aucun return
 Node* giveNodeWithTheGivenLetter(Node *currentNode, char letterToSearch); //-> return le node avec la lettre demander
 
+bool isAgreeExisting(ListChainAgreeForm *currentListOfAgreeForm, char *line); //-> return true s'il a déjà un la forme fléchis, false sinon
+void createAgreeForm(ListChainAgreeForm *currentListOfAgreeForm, char *line); //-> aucun return
+AllAgreeForm *initAllAgreeForm();
+
 void placeWordInTree(Tree dictionaryInTree, int line); //-> aucun return
 
 
