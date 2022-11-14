@@ -6,15 +6,17 @@
 
 int main() {
     Tree dictionary=initTree();
-    //placeWordInTree(dictionary, 0);
+    char *test = takeLineFromTxt(7, 1);
+    printf("%s", test);/*
+    placeWordInTree(dictionary, 7);
 
-    createDictionaryInTree();
+    //createDictionaryInTree();
 
     if(isSonExisting(dictionary.ver, x)){
         printf("oui\n");
     } else{
         printf("non\n");
     }
-
+*/
     return 0;
 }
