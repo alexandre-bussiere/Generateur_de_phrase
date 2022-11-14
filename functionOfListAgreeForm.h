@@ -4,6 +4,6 @@
 #include "struct.h"
 #include "tree.h"
 
-void addAgreeForm(char *line, ListChainAgreeForm *currentList);
+void addAgreeForm(int indexLineToExtract, ListChainAgreeForm *currentList);
 
 #endif //GENERATEUR_DE_PHRASE_FUNCTIONOFLISTAGREEFORM_H

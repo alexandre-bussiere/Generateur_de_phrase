@@ -1,9 +1,9 @@
 #include "tree.h"
 
 //GOOD
-char *extractTypeFromChar(char *line) {
+char *extractTypeFromChar(int indexLineToExtract) {
     char *type = malloc(3 * sizeof(char));
-    char *information = extractInformationFromLine(line);
+    char *information = extractInformationFromLine(indexLineToExtract);
     for (int i = 0; i < 3; i++) {
         type[i] = information[i];
     }
@@ -72,8 +72,8 @@ Node *giveNodeWithTheGivenLetter(Node *currentNode, char letterToSearch) {
 
 
 // return true s'il a déjà un la forme fléchis, false sinon
-bool isAgreeExisting(ListChainAgreeForm *currentListOfAgreeForm, char *line) {
-    char *informationAgreeForm = extractInformationFromLine(line);
+bool isAgreeExisting(ListChainAgreeForm *currentListOfAgreeForm, int indexLineToExtract) {
+    char *informationAgreeForm = extractInformationFromLine(indexLineToExtract);
     CellOfChainAgreeForm *temporary = currentListOfAgreeForm->head;
     if (temporary != NULL) {
         while (temporary != NULL) {
@@ -87,17 +87,17 @@ bool isAgreeExisting(ListChainAgreeForm *currentListOfAgreeForm, char *line) {
 }
 
 
-void createAgreeForm(ListChainAgreeForm *currentListOfAgreeForm, char *line) {
-    if (!isAgreeExisting(currentListOfAgreeForm, line)) {
+void createAgreeForm(ListChainAgreeForm *currentListOfAgreeForm, int indexLineToExtract) {
+    if (!isAgreeExisting(currentListOfAgreeForm, indexLineToExtract)) {
         if (currentListOfAgreeForm->head != NULL) {
-            addAgreeForm(line, currentListOfAgreeForm);
+            addAgreeForm(indexLineToExtract, currentListOfAgreeForm);
         } else {
             CellOfChainAgreeForm *newAgreeForm;
             newAgreeForm = (CellOfChainAgreeForm *) malloc(sizeof(CellOfChainAgreeForm));
 
-            stpcpy(newAgreeForm->category, extractTypeFromChar(line));
-            stpcpy(newAgreeForm->word, extractAgreeFormeFromLine(line));
-            stpcpy(newAgreeForm->def, extractInformationFromLine(line));
+            stpcpy(newAgreeForm->category, extractTypeFromChar(indexLineToExtract));
+            stpcpy(newAgreeForm->word, extractAgreeFormeFromLine(indexLineToExtract));
+            stpcpy(newAgreeForm->def, extractInformationFromLine(indexLineToExtract));
             newAgreeForm->next = NULL;
 
             currentListOfAgreeForm->head = currentListOfAgreeForm->tail = newAgreeForm;
@@ -107,7 +107,7 @@ void createAgreeForm(ListChainAgreeForm *currentListOfAgreeForm, char *line) {
 }
 
 
-AllAgreeForm *initAllAgreeForm(){
+AllAgreeForm *initAllAgreeForm() {
     AllAgreeForm *newAgreeForm;
     newAgreeForm = (AllAgreeForm *) malloc(sizeof(AllAgreeForm));
     newAgreeForm->nbAgreeForm = 0;
@@ -118,11 +118,11 @@ AllAgreeForm *initAllAgreeForm(){
 }
 
 
-void placeWordInTree(Tree dictionaryInTree, int line) {
-    char *newWord = extractBaseFormeFromLine("stabilisaient\tstabiliser\tVer:IImp+PL+P3");
-    char *informationWord = extractTypeFromChar("stabilisaient\tstabiliser\tVer:IImp+PL+P3");
+void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
+    char *newWord = extractBaseFormeFromLine(indexLineToExtract);
+    char *informationWord = extractTypeFromChar(indexLineToExtract);
 
-    int lengthWord = strlen(newWord);
+    int lengthWord = (int) strlen(newWord);
     Node *currentNode, *nextNode = NULL;
 
     if (strcmp(informationWord, "Adv") == 0) {
@@ -144,9 +144,7 @@ void placeWordInTree(Tree dictionaryInTree, int line) {
     if (agreeFormOfCurrentWord == NULL) {
         agreeFormOfCurrentWord = initAllAgreeForm();
     }
-    createAgreeForm(&(agreeFormOfCurrentWord->listAgreeForm), "stabilisaient\tstabiliser\tVer:IImp+PL+P3");
+    createAgreeForm(&(agreeFormOfCurrentWord->listAgreeForm), indexLineToExtract);
     agreeFormOfCurrentWord->nbAgreeForm++;
     return;
 }
-
-
