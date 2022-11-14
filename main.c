@@ -8,13 +8,13 @@ int main() {
     Tree dictionary=initTree();
     //placeWordInTree(dictionary, 0);
 
-    createDictionaryUnTree();
-    /*
+    createDictionaryInTree();
+
     if(isSonExisting(dictionary.ver, x)){
         printf("oui\n");
     } else{
         printf("non\n");
     }
-*/
+
     return 0;
 }
