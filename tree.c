@@ -150,8 +150,6 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
     }
     createAgreeForm(&(agreeFormOfCurrentWord->listAgreeForm), indexLineToExtract);
     agreeFormOfCurrentWord->nbAgreeForm++;
-    free(newWord);
-    free(informationWord);
     return;
 }
 
