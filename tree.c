@@ -133,6 +133,8 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
         currentNode = dictionaryInTree.ver;
     } else if (strcmp(informationWord, "Nom") == 0) {
         currentNode = dictionaryInTree.nom;
+    } else{
+        return;
     }
 
     for (int i = 0; i < lengthWord; i++) {
@@ -147,4 +149,15 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
     createAgreeForm(&(agreeFormOfCurrentWord->listAgreeForm), indexLineToExtract);
     agreeFormOfCurrentWord->nbAgreeForm++;
     return;
+}
+
+
+int createDictionaryInTree(){
+    Tree dictionary = initTree();
+
+    for (int i = 0; i < 287976; i++) {
+        placeWordInTree(dictionary, i);
+    }
+
+    return 1;
 }

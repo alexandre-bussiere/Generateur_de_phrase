@@ -6,19 +6,15 @@
 
 int main() {
     Tree dictionary=initTree();
-    placeWordInTree(dictionary, 0);
-/*
-    createSonWithGivenLetter(dictionary.nom, 'a');
-    createSonWithGivenLetter(dictionary.nom, 'E');
-    createSonWithGivenLetter(dictionary.nom, 'c');
+    //placeWordInTree(dictionary, 0);
 
-    printf("%c\n", (giveNodeWithTheGivenLetter(dictionary.nom, x)->value));
-*/
+    createDictionaryUnTree();
+    /*
     if(isSonExisting(dictionary.ver, x)){
         printf("oui\n");
     } else{
         printf("non\n");
     }
-
+*/
     return 0;
 }
