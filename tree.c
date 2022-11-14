@@ -150,16 +150,17 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
     }
     createAgreeForm(&(agreeFormOfCurrentWord->listAgreeForm), indexLineToExtract);
     agreeFormOfCurrentWord->nbAgreeForm++;
+
     return;
 }
 
 
-int createDictionaryInTree(){
+Tree createDictionaryInTree(){
     Tree dictionary = initTree();
 
-    for (int i = 1; i <=35; i++) {
+    for (int i = 1; i <=10; i++) {
         placeWordInTree(dictionary, i);
     }
 
-    return 1;
+    return dictionary;
 }

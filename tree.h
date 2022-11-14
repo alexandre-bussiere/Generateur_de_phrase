@@ -26,6 +26,6 @@ AllAgreeForm *initAllAgreeForm();
 
 void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract); //-> aucun return
 
-int createDictionaryInTree();
+Tree createDictionaryInTree();
 
 #endif //GENERATEUR_DE_PHRASE_TREE_H

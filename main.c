@@ -2,14 +2,14 @@
 #include "tree.h"
 #include "struct.h"
 
-#define x 'a'
+#define x 's'
 
 int main() {
-    Tree dictionary=initTree();
+    Tree dictionary;
 
-    placeWordInTree(dictionary, 7);
+    //placeWordInTree(dictionary, 7);
 
-    createDictionaryInTree();
+    dictionary = createDictionaryInTree();
 
     if(isSonExisting(dictionary.adj, x)){
         printf("oui\n");
