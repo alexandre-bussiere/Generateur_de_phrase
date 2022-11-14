@@ -7,6 +7,7 @@ char *extractTypeFromChar(int indexLineToExtract) {
     for (int i = 0; i < 3; i++) {
         type[i] = information[i];
     }
+    free(information);
     return type;
 }
 
@@ -137,6 +138,7 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
         return;
     }
 
+
     for (int i = 0; i < lengthWord; i++) {
         nextNode = giveNodeWithTheGivenLetter(currentNode, newWord[i]);
         currentNode = ((currentNode->list).head)->value;
@@ -148,6 +150,8 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
     }
     createAgreeForm(&(agreeFormOfCurrentWord->listAgreeForm), indexLineToExtract);
     agreeFormOfCurrentWord->nbAgreeForm++;
+    free(newWord);
+    free(informationWord);
     return;
 }
 
@@ -155,7 +159,7 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
 int createDictionaryInTree(){
     Tree dictionary = initTree();
 
-    for (int i = 0; i < 287976; i++) {
+    for (int i = 1; i <=35; i++) {
         placeWordInTree(dictionary, i);
     }
 

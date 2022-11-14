@@ -9,7 +9,7 @@ int main() {
 
     placeWordInTree(dictionary, 7);
 
-    //createDictionaryInTree();
+    createDictionaryInTree();
 
     if(isSonExisting(dictionary.adj, x)){
         printf("oui\n");
