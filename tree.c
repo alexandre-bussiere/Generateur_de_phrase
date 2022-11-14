@@ -2,7 +2,7 @@
 
 //GOOD
 char *extractTypeFromChar(int indexLineToExtract) {
-    char *type = malloc(3 * sizeof(char));
+    char *type = (char *)malloc(3 * sizeof(char));
     char *information = extractInformationFromLine(indexLineToExtract);
     for (int i = 0; i < 3; i++) {
         type[i] = information[i];
@@ -121,7 +121,7 @@ AllAgreeForm *initAllAgreeForm() {
 void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
     char *newWord = extractBaseFormeFromLine(indexLineToExtract);
     char *informationWord = extractTypeFromChar(indexLineToExtract);
-
+    informationWord[3]='\0';
     int lengthWord = (int) strlen(newWord);
     Node *currentNode, *nextNode = NULL;
 
