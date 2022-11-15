@@ -2,7 +2,7 @@
 #include "tree.h"
 #include "struct.h"
 
-#define x 's'
+#define x 'a'
 
 int main() {
     Tree dictionary;
