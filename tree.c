@@ -158,7 +158,7 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
 Tree createDictionaryInTree(){
     Tree dictionary = initTree();
 
-    for (int i = 1; i <=10; i++) {
+    for (int i = 1; i <=20; i++) {
         placeWordInTree(dictionary, i);
     }
 
