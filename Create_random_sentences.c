@@ -4,7 +4,15 @@
 
 #include "Create_random_sentences.h"
 
-int Nb_of_node_in_ht_list(Node *cell) {
+int Nb_of_node_in_ht_list_into_ht(CelloflistChainSon *cell) {
+    if (cell->next == NULL) {
+        return 1;
+    }
+    return 1 + Nb_of_node_in_ht_list_into_ht(cell->next);
+}
+
+
+int Nb_of_node_in_ht_list(Node *cell) {/*
     CelloflistChainSon *tmpcell;
     int i = 0;
     tmpcell = cell->list.head;
@@ -15,7 +23,8 @@ int Nb_of_node_in_ht_list(Node *cell) {
         } else {
             tmpcell = tmpcell->next;
         }
-    }
+    }*/
+    return Nb_of_node_in_ht_list_into_ht(cell->list.head);
 }
 
 
@@ -42,7 +51,7 @@ char *find_rand_word(Tree dictionaryInTree, char *informationWord) {
         CelloflistChainSon *temp2 = tmp->list.head;
         while (tmp->list.head != NULL) {
             int Nb_of_node = Nb_of_node_in_ht_list(tmp);
-            for (int shits = 1; shits < Nb_of_node-1 ; shits++) {
+            for (int shits = 1; shits < Nb_of_node; shits++) {
                 temp2 = temp2->next;
             }
             resultat[i] = temp2->value->value; // JAD LJMSDFGfdlxc:v

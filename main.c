@@ -13,7 +13,9 @@ int main() {
 
     dictionary = createDictionaryInTree();
 
-    char * word = find_rand_word(dictionary, "Adj");
-    printf("\n%s",word);
+/*    char * word = find_rand_word(dictionary, "Adj");
+    printf("\n%s",word);*/
+    printf("%d", Nb_of_node_in_ht_list(dictionary.nom));
+
     return 0;
 }
