@@ -174,7 +174,7 @@ Tree createDictionaryInTree(){
     Tree dictionary = initTree();
 
 
-    for (int i = 1; i <=26; i++) {
+    for (int i = 1; i <=100; i++) {
         placeWordInTree(dictionary, i);
     }
     //placeWordInTree(dictionary, 4);
