@@ -110,7 +110,7 @@ void createAgreeForm(ListChainAgreeForm *currentListOfAgreeForm, int indexLineTo
 
             newAgreeForm->next = NULL;
             currentListOfAgreeForm->head = currentListOfAgreeForm->tail = newAgreeForm;
-            free(type);
+            //free(type);
             free(agreeForm);
             free(information);
         }
@@ -174,7 +174,7 @@ Tree createDictionaryInTree(){
     Tree dictionary = initTree();
 
 
-    for (int i = 1; i <=100; i++) {
+    for (int i = 1; i <=10000; i++) {
         placeWordInTree(dictionary, i);
     }
     //placeWordInTree(dictionary, 4);

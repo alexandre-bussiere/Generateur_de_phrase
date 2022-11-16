@@ -1,7 +1,7 @@
 #include "take-from-txt.h"
 
 char *takeLineFromTxt(int indexLineToExtract, int argument) {
-    char *ligne = (char *) malloc(70 * sizeof(char));
+    char *ligne = (char *) malloc(100 * sizeof(char));
     int i = 0;
 
     FILE *dictionnaire = fopen("../Dictionnaire/dictionnaire_non_accentue.txt","r");//demander a jad comment on fait des path pas absolue
