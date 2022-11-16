@@ -1,0 +1,81 @@
+//
+// Created by bussi on 14/11/2022.
+//
+
+#include "Create_random_sentences.h"
+
+int Nb_of_node_in_ht_list(Node *cell) {
+    CelloflistChainSon *tmpcell;
+    int i = 0;
+    tmpcell = cell->list.head;
+    while (cell->list.tail != tmpcell->next || tmpcell == NULL) {
+        i++;
+        if(tmpcell->next == NULL){
+            return i;
+        }
+        else{
+            tmpcell = tmpcell->next;
+        }
+    }
+}
+
+
+char *find_rand_word(Tree dictionaryInTree, char *informationWord) {
+    char resultat[50];
+    int i = 0;
+    srand(time(NULL));
+    if (strcmp(informationWord, "Adv") == 0) {
+        Node *tmp = dictionaryInTree.adv;
+        CelloflistChainSon *temp2 = tmp->list.head;
+        while (tmp->list.head != NULL) {
+            for (int shits = 1; shits <= rand() % Nb_of_node_in_ht_list(tmp); shits++) {
+                temp2 = temp2->next;
+            }
+            resultat[i]=tmp->value;
+            tmp = temp2->value;
+            temp2 = temp2->value->list.head;
+            i++;
+        }
+        return resultat;
+    }
+    if (strcmp(informationWord, "Adj") == 0) {
+        Node *tmp = dictionaryInTree.adj;
+        CelloflistChainSon *temp2 = tmp->list.head;
+        while (tmp->list.head != NULL) {
+            for (int shits = 1; shits <= rand() % Nb_of_node_in_ht_list(temp2->value); shits++) {
+                temp2 = temp2->next;
+            }
+            resultat[i]=tmp->value;
+            tmp = temp2->value;
+            temp2 = temp2->value->list.head;
+            i++;
+        }
+        i++;
+        return resultat;
+    }
+    if (strcmp(informationWord, "Ver") == 0) {
+        Node *tmp = dictionaryInTree.ver;
+        CelloflistChainSon *temp2 = tmp->list.head;
+        while (tmp->list.head != NULL) {
+            for (int shits = 1; shits <= rand() % Nb_of_node_in_ht_list(tmp); shits++) {
+                temp2 = temp2->next;
+            }
+            tmp = temp2->value;
+            temp2 = temp2->value->list.head;
+        }
+        return temp2->value->agreeForm->listAgreeForm.head->word;
+    }
+    if (strcmp(informationWord, "Nom") == 0) {
+        Node *tmp = dictionaryInTree.nom;
+        CelloflistChainSon *temp2 = tmp->list.head;
+        while (tmp->list.head != NULL) {
+            for (int shits = 1; shits <= rand() % Nb_of_node_in_ht_list(tmp); shits++) {
+                temp2 = temp2->next;
+            }
+            tmp = temp2->value;
+            temp2 = temp2->value->list.head;
+        }
+        i++;
+    }
+    return resultat;
+}
