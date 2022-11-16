@@ -42,7 +42,7 @@ char *find_rand_word(Tree dictionaryInTree, char *informationWord) {
         CelloflistChainSon *temp2 = tmp->list.head;
         while (tmp->list.head != NULL) {
             int Nb_of_node = Nb_of_node_in_ht_list(tmp);
-            for (int shits = 1; shits < Nb_of_node; shits++) {
+            for (int shits = 1; shits < Nb_of_node-1 ; shits++) {
                 temp2 = temp2->next;
             }
             resultat[i] = temp2->value->value; // JAD LJMSDFGfdlxc:v
