@@ -7,6 +7,9 @@ char *extractTypeFromChar(int indexLineToExtract) {
     for (int i = 0; i < 3; i++) {
         type[i] = information[i];
     }
+
+   // free(information);
+
     return type;
 }
 
@@ -87,6 +90,7 @@ bool isAgreeExisting(ListChainAgreeForm *currentListOfAgreeForm, int indexLineTo
 }
 
 
+// GOOD
 void createAgreeForm(ListChainAgreeForm *currentListOfAgreeForm, int indexLineToExtract) {
     if (!isAgreeExisting(currentListOfAgreeForm, indexLineToExtract)) {
         if (currentListOfAgreeForm->head != NULL) {
@@ -95,11 +99,20 @@ void createAgreeForm(ListChainAgreeForm *currentListOfAgreeForm, int indexLineTo
             CellOfChainAgreeForm *newAgreeForm;
             newAgreeForm = (CellOfChainAgreeForm *) malloc(sizeof(CellOfChainAgreeForm));
 
-            strcpy(newAgreeForm->category, extractTypeFromChar(indexLineToExtract));
-            strcpy(newAgreeForm->word, extractAgreeFormeFromLine(indexLineToExtract));
-            strcpy(newAgreeForm->def, extractInformationFromLine(indexLineToExtract));
+
+            char *type = extractTypeFromChar(indexLineToExtract);
+            char *agreeForm = extractAgreeFormeFromLine(indexLineToExtract);
+            char *information = extractInformationFromLine(indexLineToExtract);
+
+            strcpy(newAgreeForm->category, type);
+            strcpy(newAgreeForm->word, agreeForm);
+            strcpy(newAgreeForm->def, information);
+
             newAgreeForm->next = NULL;
             currentListOfAgreeForm->head = currentListOfAgreeForm->tail = newAgreeForm;
+            free(type);
+            free(agreeForm);
+            free(information);
         }
     }
     return;
@@ -122,7 +135,7 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
     char *informationWord = extractTypeFromChar(indexLineToExtract);
     informationWord[3]='\0';
     int lengthWord = (int) strlen(newWord);
-    Node *currentNode, *nextNode = NULL;
+    Node *currentNode; //, *nextNode = NULL;
 
     if (strcmp(informationWord, "Adv") == 0) {
         currentNode = dictionaryInTree.adv;
@@ -138,17 +151,23 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
 
 
     for (int i = 0; i < lengthWord; i++) {
-        nextNode = giveNodeWithTheGivenLetter(currentNode, newWord[i]);
-        currentNode = ((currentNode->list).head)->value;
+        createSonWithGivenLetter(currentNode, newWord[i]);
+        currentNode = giveNodeWithTheGivenLetter(currentNode, newWord[i]);
+                //((currentNode->list).head)->value;
     }
 
-    AllAgreeForm *agreeFormOfCurrentWord = nextNode->agreeForm;
+    AllAgreeForm *agreeFormOfCurrentWord = currentNode->agreeForm;
     if (agreeFormOfCurrentWord == NULL) {
         agreeFormOfCurrentWord = initAllAgreeForm();
     }
     createAgreeForm(&(agreeFormOfCurrentWord->listAgreeForm), indexLineToExtract);
     agreeFormOfCurrentWord->nbAgreeForm++;
+
+
     free(newWord);
+    free(informationWord);
+
+
     return;
 }
 
@@ -156,9 +175,12 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
 Tree createDictionaryInTree(){
     Tree dictionary = initTree();
 
-    for (int i = 1; i <=40; i++) {
+
+    for (int i = 1; i <=26; i++) {
         placeWordInTree(dictionary, i);
     }
+    //placeWordInTree(dictionary, 4);
+    //placeWordInTree(dictionary, 5);
 
     return dictionary;
 }
