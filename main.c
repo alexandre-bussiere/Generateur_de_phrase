@@ -18,7 +18,7 @@ int main() {
         printf("non\n");
     }
     //int word = Nb_of_node_in_ht_list(dictionary.adj);
-    char * word = find_rand_word(dictionary, "Adj");
-    printf("\n%s",word);
+    //char * word = find_rand_word(dictionary, "Adj");
+    //printf("\n%s",word);
     return 0;
 }

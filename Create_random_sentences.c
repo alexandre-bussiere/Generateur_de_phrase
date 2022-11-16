@@ -21,7 +21,7 @@ int Nb_of_node_in_ht_list(Node *cell) {
 
 
 char *find_rand_word(Tree dictionaryInTree, char *informationWord) {
-    char *resultat[50];
+    char resultat[50];
     int i = 0;
     srand(time(NULL));
     if (strcmp(informationWord, "Adv") == 0) {
@@ -31,24 +31,27 @@ char *find_rand_word(Tree dictionaryInTree, char *informationWord) {
             for (int shits = 1; shits <= rand() % Nb_of_node_in_ht_list(tmp); shits++) {
                 temp2 = temp2->next;
             }
+            resultat[i]=tmp->value;
             tmp = temp2->value;
             temp2 = temp2->value->list.head;
+            i++;
         }
-        i++;
-        return *resultat;
+        return resultat;
     }
     if (strcmp(informationWord, "Adj") == 0) {
         Node *tmp = dictionaryInTree.adj;
         CelloflistChainSon *temp2 = tmp->list.head;
         while (tmp->list.head != NULL) {
-            for (int shits = 1; shits <= rand() % Nb_of_node_in_ht_list(tmp); shits++) {
+            for (int shits = 1; shits <= rand() % Nb_of_node_in_ht_list(temp2->value); shits++) {
                 temp2 = temp2->next;
             }
+            resultat[i]=tmp->value;
             tmp = temp2->value;
             temp2 = temp2->value->list.head;
+            i++;
         }
         i++;
-        return *resultat;
+        return resultat;
     }
     if (strcmp(informationWord, "Ver") == 0) {
         Node *tmp = dictionaryInTree.ver;
@@ -74,5 +77,5 @@ char *find_rand_word(Tree dictionaryInTree, char *informationWord) {
         }
         i++;
     }
-    return *resultat;
+    return resultat;
 }

@@ -7,7 +7,6 @@ char *extractTypeFromChar(int indexLineToExtract) {
     for (int i = 0; i < 3; i++) {
         type[i] = information[i];
     }
-    free(information);
     return type;
 }
 
@@ -96,11 +95,10 @@ void createAgreeForm(ListChainAgreeForm *currentListOfAgreeForm, int indexLineTo
             CellOfChainAgreeForm *newAgreeForm;
             newAgreeForm = (CellOfChainAgreeForm *) malloc(sizeof(CellOfChainAgreeForm));
 
-            stpcpy(newAgreeForm->category, extractTypeFromChar(indexLineToExtract));
-            stpcpy(newAgreeForm->word, extractAgreeFormeFromLine(indexLineToExtract));
-            stpcpy(newAgreeForm->def, extractInformationFromLine(indexLineToExtract));
+            strcpy(newAgreeForm->category, extractTypeFromChar(indexLineToExtract));
+            strcpy(newAgreeForm->word, extractAgreeFormeFromLine(indexLineToExtract));
+            strcpy(newAgreeForm->def, extractInformationFromLine(indexLineToExtract));
             newAgreeForm->next = NULL;
-
             currentListOfAgreeForm->head = currentListOfAgreeForm->tail = newAgreeForm;
         }
     }
@@ -150,7 +148,7 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
     }
     createAgreeForm(&(agreeFormOfCurrentWord->listAgreeForm), indexLineToExtract);
     agreeFormOfCurrentWord->nbAgreeForm++;
-
+    free(newWord);
     return;
 }
 
@@ -158,7 +156,7 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
 Tree createDictionaryInTree(){
     Tree dictionary = initTree();
 
-    for (int i = 1; i <=10; i++) {
+    for (int i = 1; i <=40; i++) {
         placeWordInTree(dictionary, i);
     }
 
