@@ -6,14 +6,18 @@
 #define x 'a'
 
 int main() {
+    srand(time(NULL));
+
     Tree dictionary;
-
-  //  placeWordInTree(dictionary, 7);
-
 
     dictionary = createDictionaryInTree();
 
-    create_random_phrase(dictionary);
+    char userChoice;
+    do {
+        create_random_phrase(dictionary);
+        printf("\n");
+        scanf("%c", &userChoice);
+    } while (userChoice!='q');
 
     return 0;
 }

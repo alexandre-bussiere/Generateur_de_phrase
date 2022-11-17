@@ -156,7 +156,7 @@ char* find_rand_word_base_form (Tree dictionaryInTree, char *informationWord){
 }
 
 void create_random_phrase (Tree dictionaryInTree){
-    srand(time(NULL));
+    //srand(time(NULL));
     int choix = rand() % 2;
     if(choix == 0){
         printf("%s %s %s %s",find_rand_word(dictionaryInTree,"Nom"),find_rand_word(dictionaryInTree,"Adj"),find_rand_word(dictionaryInTree,"Ver"),find_rand_word(dictionaryInTree,"Nom"));
