@@ -13,8 +13,7 @@ int main() {
 
     dictionary = createDictionaryInTree();
 
-    char * word = find_rand_word(dictionary, "Nom");
-    printf("\n%s",word);
+    create_random_phrase(dictionary);
 
     return 0;
 }
