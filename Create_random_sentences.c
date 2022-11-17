@@ -12,18 +12,7 @@ int Nb_of_node_in_ht_list_into_ht(CelloflistChainSon *cell) {
 }
 
 
-int Nb_of_node_in_ht_list(Node *cell) {/*
-    CelloflistChainSon *tmpcell;
-    int i = 0;
-    tmpcell = cell->list.head;
-    while (cell->list.tail != tmpcell->next || tmpcell == NULL) {
-        i++;
-        if (tmpcell->next == NULL) {
-            return i;
-        } else {
-            tmpcell = tmpcell->next;
-        }
-    }*/
+int Nb_of_node_in_ht_list(Node *cell) {
     return Nb_of_node_in_ht_list_into_ht(cell->list.head);
 }
 
@@ -36,12 +25,12 @@ char *find_rand_word(Tree dictionaryInTree, char *informationWord) {
         Node *tmp = dictionaryInTree.adv;
         CelloflistChainSon *temp2 = tmp->list.head;
         while (tmp->list.head != NULL) {
-            int Nb_of_node = rand() % Nb_of_node_in_ht_list(tmp);
-            for (int shits = 1; shits < Nb_of_node; shits++) {
+            int Nb_of_node =rand() %  Nb_of_node_in_ht_list(tmp);
+            for (int shits = 0; shits < Nb_of_node; shits++) {
                 temp2 = temp2->next;
             }
             resultat[i] = temp2->value->value; // JAD LJMSDFGfdlxc:v
-            tmp = tmp->list.head->value;
+            tmp = temp2->value;
             temp2 = temp2->value->list.head;
             i++;
         }
@@ -53,11 +42,11 @@ char *find_rand_word(Tree dictionaryInTree, char *informationWord) {
         CelloflistChainSon *temp2 = tmp->list.head;
         while (tmp->list.head != NULL) {
             int Nb_of_node =rand() %  Nb_of_node_in_ht_list(tmp);
-            for (int shits = 1; shits < Nb_of_node; shits++) {
+            for (int shits = 0; shits < Nb_of_node; shits++) {
                 temp2 = temp2->next;
             }
             resultat[i] = temp2->value->value; // JAD LJMSDFGfdlxc:v
-            tmp = tmp->list.head->value;
+            tmp = temp2->value;
             temp2 = temp2->value->list.head;
             i++;
         }
@@ -68,28 +57,28 @@ char *find_rand_word(Tree dictionaryInTree, char *informationWord) {
         Node *tmp = dictionaryInTree.ver;
         CelloflistChainSon *temp2 = tmp->list.head;
         while (tmp->list.head != NULL) {
-            for (int shits = 1; shits <= rand() % Nb_of_node_in_ht_list(tmp); shits++) {
+            for (int shits = 0; shits < rand() % Nb_of_node_in_ht_list(tmp); shits++) {
                 temp2 = temp2->next;
             }
             tmp = temp2->value;
             temp2 = temp2->value->list.head;
         }
-        return temp2->value->agreeForm->listAgreeForm.head->word;
+        return tmp->agreeForm->listAgreeForm.head->word;
     }
     if (strcmp(informationWord, "Nom") == 0) {
         Node *tmp = dictionaryInTree.nom;
         CelloflistChainSon *temp2 = tmp->list.head;
         while (tmp->list.head != NULL) {
             int Nb_of_node =rand() %  Nb_of_node_in_ht_list(tmp);
-            for (int shits = 1; shits < Nb_of_node; shits++) {
+            for (int shits = 0; shits < Nb_of_node; shits++) {
                 temp2 = temp2->next;
             }
-            resultat[i] = temp2->value->value; // JAD LJMSDFGfdlxc:v
-            tmp = tmp->list.head->value;
+            //resultat[i] = temp2->value->value; // JAD LJMSDFGfdlxc:v
+            tmp = temp2->value;
             temp2 = temp2->value->list.head;
-            i++;
+            //i++;
         }
-        resultat[i] = '\0';
-        return resultat;
+        //resultat[i] = '\0';
+        return tmp->agreeForm->listAgreeForm.head->word;
     }
 }

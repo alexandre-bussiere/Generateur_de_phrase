@@ -164,8 +164,7 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
     currentNode->agreeForm->nbAgreeForm++;
 
 
-    free(newWord);
-    free(informationWord);
+
 
     return;
 }
@@ -176,7 +175,7 @@ Tree createDictionaryInTree(){
 
 
 
-    for (int i = 1; i <=100; i++) {
+    for (int i = 1; i <=500; i++) {
         placeWordInTree(dictionary, i);
     }
     //placeWordInTree(dictionary, 4);
