@@ -77,9 +77,10 @@ Node *giveNodeWithTheGivenLetter(Node *currentNode, char letterToSearch) {
 // return true s'il a déjà un la forme fléchis, false sinon
 bool isAgreeExisting(ListChainAgreeForm *currentListOfAgreeForm, int indexLineToExtract) {
     char *informationAgreeForm = extractInformationFromLine(indexLineToExtract);
+    informationAgreeForm[15]='\0';
     CellOfChainAgreeForm *temporary = currentListOfAgreeForm->head;
     if (temporary != NULL) {
-        while (temporary != NULL) {
+        while (temporary->next != NULL) {
             if (strcmp(temporary->def, informationAgreeForm) == 0) {
                 return true;
             }
@@ -98,7 +99,6 @@ void createAgreeForm(ListChainAgreeForm *currentListOfAgreeForm, int indexLineTo
         } else {
             CellOfChainAgreeForm *newAgreeForm;
             newAgreeForm = (CellOfChainAgreeForm *) malloc(sizeof(CellOfChainAgreeForm));
-
 
             char *type = extractTypeFromChar(indexLineToExtract);
             char *agreeForm = extractAgreeFormeFromLine(indexLineToExtract);
@@ -153,18 +153,19 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
     for (int i = 0; i < lengthWord; i++) {
         createSonWithGivenLetter(currentNode, newWord[i]);
         currentNode = giveNodeWithTheGivenLetter(currentNode, newWord[i]);
-                //((currentNode->list).head)->value;
     }
 
-    AllAgreeForm *agreeFormOfCurrentWord = currentNode->agreeForm;
-    if (agreeFormOfCurrentWord == NULL) {
-        agreeFormOfCurrentWord = initAllAgreeForm();
+   // AllAgreeForm *agreeFormOfCurrentWord = currentNode->agreeForm;
+
+    if (currentNode->agreeForm == NULL) {
+        currentNode->agreeForm = initAllAgreeForm();
     }
-    createAgreeForm(&(agreeFormOfCurrentWord->listAgreeForm), indexLineToExtract);
-    agreeFormOfCurrentWord->nbAgreeForm++;
+    createAgreeForm(&(currentNode->agreeForm->listAgreeForm), indexLineToExtract);
+    currentNode->agreeForm->nbAgreeForm++;
 
 
-
+    free(newWord);
+    free(informationWord);
 
     return;
 }
@@ -174,7 +175,8 @@ Tree createDictionaryInTree(){
     Tree dictionary = initTree();
 
 
-    for (int i = 23270; i <=23290; i++) {
+
+    for (int i = 1; i <=100; i++) {
         placeWordInTree(dictionary, i);
     }
     //placeWordInTree(dictionary, 4);
