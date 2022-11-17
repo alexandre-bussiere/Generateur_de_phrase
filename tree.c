@@ -166,12 +166,14 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
 
     free(newWord);
     free(informationWord);
+
     return;
 }
 
 
 Tree createDictionaryInTree(){
     Tree dictionary = initTree();
+
 
 
     for (int i = 1; i <=100; i++) {
