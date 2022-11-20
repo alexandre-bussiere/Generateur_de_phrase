@@ -209,7 +209,7 @@ char *giveGenderAndNumberOfAName(AllAgreeForm *agreeForm, char *gender[3], char 
 
 
 void create_random_phrase(Tree dictionaryInTree) {
-    int choice = 0;//rand() % 3;
+    int choice = rand() % 3;
     if (choice == 0) {
         Node *nom1, *adj, *ver, *nom2;
         nom1 = createNode('0');
@@ -251,25 +251,10 @@ void create_random_phrase(Tree dictionaryInTree) {
         adjFinal = conjugateAWord(adj, gender, number);
         verFinal = conjugateAWord(ver, gender, number);
 
-        printf("%s %s %s %s.", nom1Final, adjFinal, verFinal, nom2Final);
-
-        free(adj);
-        free(nom1);
-        free(nom2);
-        free(ver);
-
-/*        free(adjFinal);
-        free(nom1Final);
-        free(nom2Final);
-        free(verFinal);*/
-    }/*
-        printf("%s %s %s %s.", find_rand_word_base_form(dictionaryInTree, "Nom", NULL),
-               find_rand_word_base_form(dictionaryInTree, "Adj", NULL),
-               find_rand_word_base_form(dictionaryInTree, "Ver", NULL),
-               find_rand_word_base_form(dictionaryInTree, "Nom", NULL));
+        printf("%s %s %s %s.", nom1Final, adjFinal, verFinal, nom2Final);/*
     }
     if (choice == 1) {
-        printf("%s qui %s %s %s %s.", find_rand_word_base_form(dictionaryInTree, "Nom", NULL),
+        printf("%s qui %s %s %s %s.\n", find_rand_word_base_form(dictionaryInTree, "Nom", NULL),
                find_rand_word_base_form(dictionaryInTree, "Ver", NULL),
                find_rand_word_base_form(dictionaryInTree, "Ver", NULL),
                find_rand_word_base_form(dictionaryInTree, "Nom", NULL),
