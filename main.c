@@ -11,13 +11,21 @@ int main() {
     Tree dictionary;
 
     dictionary = createDictionaryInTree();
+    Node *test = (Node *) malloc(sizeof(Node));
+    test->value = '0';
+    test->list.head = NULL;
+    test->list.tail = NULL;
+    test->agreeForm = NULL;
 
+    printf("%s\n", find_rand_word_base_form(dictionary, "Ver", &test));
+    printf("%c\n", test->value);
+/*
     char userChoice;
     do {
         create_random_phrase(dictionary);
         printf("\n");
         scanf("%c", &userChoice);
-    } while (userChoice!='q');
+    } while (userChoice!='q');*/
 
     return 0;
 }
