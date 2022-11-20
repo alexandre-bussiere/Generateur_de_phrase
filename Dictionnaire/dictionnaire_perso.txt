@@ -217,7 +217,6 @@ cavalions	cavaler	Ver:IImp+PL+P1:SPre+PL+P1
 cavalons	cavaler	Ver:Imp+PL+P1
 cavalons	cavaler	Ver:IPre+PL+P1
 avale	avale	Adj:Mas+SG
-
 avant-bras	avant-bras	Nom:Mas+InvPL
 avant-corps	avant-corps	Nom:Mas+InvPL
 avant-coureur	avant-coureur	Adj:Mas+SG

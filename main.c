@@ -18,7 +18,8 @@ int main() {
     test->agreeForm = NULL;
 
     printf("%s\n", find_rand_word_base_form(dictionary, "Ver", &test));
-    printf("%c\n", test->value);
+
+    printf("%s", conjugateAWord(test, "Fem", "PL"));
 /*
     char userChoice;
     do {
