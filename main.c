@@ -10,18 +10,18 @@ int main() {
 
     Tree dictionary;
 
-    printf("Création du dictionnaire...\n");
+    printf("Creation du dictionnaire...\n");
     dictionary = createDictionaryInTree();
 
-    printf("Dictionnaire créer.\n");
-    printf("Pour générer une phrase aléatoire, appuyer sur entrée.\n");
+    printf("Dictionnaire creer.\n");
+    printf("Pour generer une phrase aleatoire, appuyer sur entree.\n");
 
     char userChoice;
     scanf("%c", &userChoice);
     printf("\t");
     create_random_phrase(dictionary);
     printf("\n\n");
-    printf("Pour générer d'autre phrase, appuyer sur entrée.\n");
+    printf("Pour generer d'autre phrase, appuyer sur entree.\n");
     printf("Pour fermer le programme, entrer q.\n");
 
     scanf("%c", &userChoice);
