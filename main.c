@@ -10,21 +10,20 @@ int main() {
 
     Tree dictionary;
 
-    dictionary = createDictionaryInTree();/*
-    Node *test = createNode('0');
+    printf("Création du dictionnaire...\n");
+    dictionary = createDictionaryInTree();
 
-    printf("%s\n", find_rand_word_base_form(dictionary, "Nom", &test));
-
-
-    char *gen, *nb, *mot;
-    gen = (char *) malloc(6 * sizeof(char));
-    nb = (char *) malloc(6 * sizeof(char));
-    mot = giveGenderAndNumberOfAName(test->agreeForm, &gen, &nb);
-
-    printf("mot: %s, genre:  %s, nombre: %s\n", mot, gen, nb);
-    //printf("%s", conjugateAWord(test, "Fem", "PL"));*/
+    printf("Dictionnaire créer.\n");
+    printf("Pour générer une phrase aléatoire, appuyer sur entrée.\n");
 
     char userChoice;
+    scanf("%c", &userChoice);
+    create_random_phrase(dictionary);
+    printf("\n\n");
+    printf("Pour générer d'autre phrase, appuyer sur entrée.\n");
+    printf("Pour fermer le programme, entrer q.\n");
+
+    scanf("%c", &userChoice);
     do {
         create_random_phrase(dictionary);
         printf("\n");

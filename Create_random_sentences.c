@@ -26,35 +26,39 @@ int Nb_of_node_in_ht_list(Node *cell) {
 
 char *find_rand_word_base_form(Tree dictionaryInTree, char *informationWord, Node **lastNode) {
     char *result = (char *) malloc(30 * sizeof(char));
-    int i = 0;
-    Node *tmp = NULL;
+    if (result != NULL) {
 
-    if (strcmp(informationWord, "Adv") == 0) {
-        tmp = dictionaryInTree.adv;
-    } else if (strcmp(informationWord, "Adj") == 0) {
-        tmp = dictionaryInTree.adj;
-    } else if (strcmp(informationWord, "Ver") == 0) {
-        tmp = dictionaryInTree.ver;
-    } else if (strcmp(informationWord, "Nom") == 0) {
-        tmp = dictionaryInTree.nom;
-    }
 
-    CelloflistChainSon *temp2 = tmp->list.head;
-    while (tmp->list.head != NULL) {
-        int Nb_of_node = rand() % Nb_of_node_in_ht_list(tmp);
-        for (int j = 0; j < Nb_of_node; j++) {
-            temp2 = temp2->next;
+        int i = 0;
+        Node *tmp = NULL;
+
+        if (strcmp(informationWord, "Adv") == 0) {
+            tmp = dictionaryInTree.adv;
+        } else if (strcmp(informationWord, "Adj") == 0) {
+            tmp = dictionaryInTree.adj;
+        } else if (strcmp(informationWord, "Ver") == 0) {
+            tmp = dictionaryInTree.ver;
+        } else if (strcmp(informationWord, "Nom") == 0) {
+            tmp = dictionaryInTree.nom;
         }
-        result[i] = temp2->value->value;
-        tmp = temp2->value;
-        temp2 = temp2->value->list.head;
-        i++;
+
+        CelloflistChainSon *temp2 = tmp->list.head;
+        while (tmp->list.head != NULL) {
+            int Nb_of_node = rand() % Nb_of_node_in_ht_list(tmp);
+            for (int j = 0; j < Nb_of_node; j++) {
+                temp2 = temp2->next;
+            }
+            result[i] = temp2->value->value;
+            tmp = temp2->value;
+            temp2 = temp2->value->list.head;
+            i++;
+        }
+        result[i] = '\0';
+        if ((lastNode != NULL) && (*lastNode != NULL)) {
+            *lastNode = tmp;
+        }
+        return result;
     }
-    result[i] = '\0';
-    if ((lastNode != NULL) && (*lastNode != NULL)) {
-        *lastNode = tmp;
-    }
-    return result;
 }
 
 
@@ -197,11 +201,17 @@ char *conjugateAWord(Node *lastNodeOfTheWord, char gender[3], char number[2]) {
 char *giveGenderAndNumberOfAName(AllAgreeForm *agreeForm, char *gender[3], char *number[2]) {
     CellOfChainAgreeForm *wantedAgreeForm;
     wantedAgreeForm = giveRandomAgreeForm(agreeForm);
-    if ((gender != NULL) && (number != NULL)) {
+    if (gender != NULL) {
         char *temp = (char *) malloc(15 * sizeof(char));
         strcpy(temp, wantedAgreeForm->def);
         strtok(temp, ":");
         *gender = strtok(NULL, "+");
+    }
+    if (number != NULL) {
+        char *temp = (char *) malloc(15 * sizeof(char));
+        strcpy(temp, wantedAgreeForm->def);
+        strtok(temp, ":");
+        strtok(NULL, "+");
         *number = strtok(NULL, "+");
     }
     return wantedAgreeForm->word;
@@ -251,21 +261,80 @@ void create_random_phrase(Tree dictionaryInTree) {
         adjFinal = conjugateAWord(adj, gender, number);
         verFinal = conjugateAWord(ver, gender, number);
 
-        printf("%s %s %s %s.", nom1Final, adjFinal, verFinal, nom2Final);/*
+        if (nom1Final[0] >= 97) {
+            nom1Final[0] -= 32;
+        }
+        printf("%s %s %s %s.", nom1Final, adjFinal, verFinal, nom2Final);
     }
     if (choice == 1) {
-        printf("%s qui %s %s %s %s.\n", find_rand_word_base_form(dictionaryInTree, "Nom", NULL),
-               find_rand_word_base_form(dictionaryInTree, "Ver", NULL),
-               find_rand_word_base_form(dictionaryInTree, "Ver", NULL),
-               find_rand_word_base_form(dictionaryInTree, "Nom", NULL),
-               find_rand_word_base_form(dictionaryInTree, "Adj", NULL));
+        Node *nom1, *adj, *ver1, *ver2, *nom2;
+        nom1 = createNode('0');
+        adj = createNode('0');
+        ver1 = createNode('0');
+        ver2 = createNode('0');
+        nom2 = createNode('0');
+
+        find_rand_word_base_form(dictionaryInTree, "Nom", &nom1);
+        find_rand_word_base_form(dictionaryInTree, "Ver", &ver1);
+        find_rand_word_base_form(dictionaryInTree, "Ver", &ver2);
+        find_rand_word_base_form(dictionaryInTree, "Adj", &adj);
+        find_rand_word_base_form(dictionaryInTree, "Nom", &nom2);
+
+        char *nom1Final, *adjFinal, *ver1Final, *ver2Final, *nom2Final;
+        char *gender, *number;
+        gender = (char *) malloc(6 * sizeof(char));
+        number = (char *) malloc(6 * sizeof(char));
+
+        nom1Final = giveGenderAndNumberOfAName(nom1->agreeForm, &gender, &number);
+        nom2Final = giveGenderAndNumberOfAName(nom1->agreeForm, NULL, NULL);
+
+        if (compareTwoChar(gender, "InvGen")) {
+            int i = rand() % 2;
+            if (i == 0) {
+                strcpy(gender, "Fem");
+            } else {
+                strcpy(gender, "Mas");
+            }
+        }
+
+        if (compareTwoChar(number, "InvPL")) {
+            int i = rand() % 2;
+            if (i == 0) {
+                strcpy(number, "SG");
+            } else {
+                strcpy(number, "PL");
+            }
+        }
+
+        adjFinal = conjugateAWord(adj, gender, number);
+        ver1Final = conjugateAWord(ver1, gender, number);
+        ver2Final = conjugateAWord(ver2, gender, number);
+
+        if (nom1Final[0] >= 97) {
+            nom1Final[0] -= 32;
+        }
+        printf("%s qui %s %s %s %s.", nom1Final, ver1Final, ver2Final, nom2Final, adjFinal);
     }
     if (choice == 2) {
-        printf("Elle %s, quand son groupe %s %s %s.", find_rand_word_base_form(dictionaryInTree, "Ver", NULL),
-               find_rand_word_base_form(dictionaryInTree, "Ver", NULL),
-               find_rand_word_base_form(dictionaryInTree, "Adj", NULL),
-               find_rand_word_base_form(dictionaryInTree, "Nom", NULL));
-    }
-*/
+        Node *adj, *ver1, *ver2, *nom;
+        adj = createNode('0');
+        ver1 = createNode('0');
+        ver2 = createNode('0');
+        nom = createNode('0');
 
+        find_rand_word_base_form(dictionaryInTree, "Ver", &ver1);
+        find_rand_word_base_form(dictionaryInTree, "Ver", &ver2);
+        find_rand_word_base_form(dictionaryInTree, "Adj", &adj);
+        find_rand_word_base_form(dictionaryInTree, "Nom", &nom);
+
+        char *adjFinal, *ver1Final, *ver2Final, *nomFinal;
+
+        nomFinal = giveGenderAndNumberOfAName(nom->agreeForm, NULL, NULL);
+
+        ver1Final = conjugateAWord(ver1, "Fem", "SG");
+        ver2Final = conjugateAWord(ver2, "Mas", "PL");
+        adjFinal = conjugateAWord(adj, "Mas", "PL");
+
+        printf("Elle %s, quand son groupe %s %s %s.", ver1Final, ver2Final, adjFinal, nomFinal);
+    }
 }
