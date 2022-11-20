@@ -6,20 +6,18 @@
 #define x 'a'
 
 int main() {
+    srand(time(NULL));
+
     Tree dictionary;
-
-  //  placeWordInTree(dictionary, 7);
-
 
     dictionary = createDictionaryInTree();
 
-    if(isSonExisting(dictionary.nom, x)){
-        printf("oui\n");
-    } else{
-        printf("non\n");
-    }
-    //int word = Nb_of_node_in_ht_list(dictionary.adj);
-    //char * word = find_rand_word(dictionary, "Adj");
-    //printf("\n%s",word);
+    char userChoice;
+    do {
+        create_random_phrase(dictionary);
+        printf("\n");
+        scanf("%c", &userChoice);
+    } while (userChoice!='q');
+
     return 0;
 }

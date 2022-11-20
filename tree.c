@@ -110,7 +110,7 @@ void createAgreeForm(ListChainAgreeForm *currentListOfAgreeForm, int indexLineTo
 
             newAgreeForm->next = NULL;
             currentListOfAgreeForm->head = currentListOfAgreeForm->tail = newAgreeForm;
-            //free(type);
+//            free(type);
             free(agreeForm);
             free(information);
         }
@@ -164,8 +164,8 @@ void placeWordInTree(Tree dictionaryInTree, int indexLineToExtract) {
     currentNode->agreeForm->nbAgreeForm++;
 
 
-    free(newWord);
-    free(informationWord);
+
+
     return;
 }
 
