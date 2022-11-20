@@ -18,6 +18,7 @@ int main() {
 
     char userChoice;
     scanf("%c", &userChoice);
+    printf("\t");
     create_random_phrase(dictionary);
     printf("\n\n");
     printf("Pour générer d'autre phrase, appuyer sur entrée.\n");
@@ -25,6 +26,7 @@ int main() {
 
     scanf("%c", &userChoice);
     do {
+        printf("\t");
         create_random_phrase(dictionary);
         printf("\n");
         scanf("%c", &userChoice);
