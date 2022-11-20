@@ -773,7 +773,6 @@ ballions	baller	Ver:IImp+PL+P1:SPre+PL+P1
 ballons	baller	Ver:IPre+PL+P1:ImPre+PL+P1
 calla	caller	Ver:IPSim+SG+P3
 calle	caller	Ver:IPre+SG+P1:IPre+SG+P3:SPre+SG+P1:SPre+SG+P3:ImPre+SG+P2
-
 baba	baba	Adj:InvGen+SG:InvGen+PL
 baba	baba	Nom:InvGen+SG
 baba	baba	Nom:Mas+SG
@@ -19347,7 +19346,6 @@ yeuses	yeuse	Nom:Fem+PL
 yeuses	yeux	Nom:Mas+PL
 yeuse	yeuse	Nom:Fem+SG
 ye	ye	Adj:InvGen+SG:InvGen+PL
-ye	ye	Nom:InvGen+SG:InvGen+PL
 ye-ye	ye-ye	Adj:InvGen+SG
 ye-ye	ye-ye	Nom:InvGen+SG
 ye-ye	ye-ye	Nom:Mas+InvPL

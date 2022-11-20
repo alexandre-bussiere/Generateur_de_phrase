@@ -5,7 +5,7 @@
 #include "Create_random_sentences.h"
 
 bool compareTwoChar(char list[3], char *pointer) {
-    if ((list[0] == pointer[0]) && (list[1] == pointer[1]) && (list[2] == pointer[2])) {
+    if ((list[0] == pointer[0]) && (list[1] == pointer[1])) {
         return true;
     }
     return false;
@@ -72,7 +72,7 @@ bool isWantsAgreeFormExisting(ListChainAgreeForm list, char gender[3], char numb
                 nb[i] = '\0';
             }
         }
-        printf("%s, %s\n", gen, nb);
+        //printf("%s, %s\n", gen, nb);
         if ((strcmp(gen, gender) == 0) && (strcmp(nb, number) == 0)) {
             return true;
         }
@@ -191,15 +191,78 @@ char *conjugateAWord(Node *lastNodeOfTheWord, char gender[3], char number[2]) {
         return wantedAgreeForm->word;
     }
 
-    if (compareTwoChar(allAgreeForm->category, "Nom")) {
+}
 
+
+char *giveGenderAndNumberOfAName(AllAgreeForm *agreeForm, char *gender[3], char *number[2]) {
+    CellOfChainAgreeForm *wantedAgreeForm;
+    wantedAgreeForm = giveRandomAgreeForm(agreeForm);
+    if ((gender != NULL) && (number != NULL)) {
+        char *temp = (char *) malloc(15 * sizeof(char));
+        strcpy(temp, wantedAgreeForm->def);
+        strtok(temp, ":");
+        *gender = strtok(NULL, "+");
+        *number = strtok(NULL, "+");
     }
+    return wantedAgreeForm->word;
 }
 
 
 void create_random_phrase(Tree dictionaryInTree) {
-    int choice = rand() % 3;
+    int choice = 0;//rand() % 3;
     if (choice == 0) {
+        Node *nom1, *adj, *ver, *nom2;
+        nom1 = createNode('0');
+        adj = createNode('0');
+        ver = createNode('0');
+        nom2 = createNode('0');
+
+        find_rand_word_base_form(dictionaryInTree, "Nom", &nom1);
+        find_rand_word_base_form(dictionaryInTree, "Ver", &ver);
+        find_rand_word_base_form(dictionaryInTree, "Adj", &adj);
+        find_rand_word_base_form(dictionaryInTree, "Nom", &nom2);
+
+        char *nom1Final, *adjFinal, *verFinal, *nom2Final;
+        char *gender, *number;
+        gender = (char *) malloc(6 * sizeof(char));
+        number = (char *) malloc(6 * sizeof(char));
+
+        nom1Final = giveGenderAndNumberOfAName(nom1->agreeForm, &gender, &number);
+        nom2Final = giveGenderAndNumberOfAName(nom1->agreeForm, NULL, NULL);
+
+        if (compareTwoChar(gender, "InvGen")) {
+            int i = rand() % 2;
+            if (i == 0) {
+                strcpy(gender, "Fem");
+            } else {
+                strcpy(gender, "Mas");
+            }
+        }
+
+        if (compareTwoChar(number, "InvPL")) {
+            int i = rand() % 2;
+            if (i == 0) {
+                strcpy(number, "SG");
+            } else {
+                strcpy(number, "PL");
+            }
+        }
+
+        adjFinal = conjugateAWord(adj, gender, number);
+        verFinal = conjugateAWord(ver, gender, number);
+
+        printf("%s %s %s %s.", nom1Final, adjFinal, verFinal, nom2Final);
+
+        free(adj);
+        free(nom1);
+        free(nom2);
+        free(ver);
+
+/*        free(adjFinal);
+        free(nom1Final);
+        free(nom2Final);
+        free(verFinal);*/
+    }/*
         printf("%s %s %s %s.", find_rand_word_base_form(dictionaryInTree, "Nom", NULL),
                find_rand_word_base_form(dictionaryInTree, "Adj", NULL),
                find_rand_word_base_form(dictionaryInTree, "Ver", NULL),
@@ -218,4 +281,6 @@ void create_random_phrase(Tree dictionaryInTree) {
                find_rand_word_base_form(dictionaryInTree, "Adj", NULL),
                find_rand_word_base_form(dictionaryInTree, "Nom", NULL));
     }
+*/
+
 }
